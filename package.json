@@ -1,0 +1,19 @@
+{
+  "name": "reactive-core",
+  "version": "1.0.0",
+  "description": "A custom reactive plugin",
+  "main": "index.js",
+  "author": "Abhishek Rijal",
+  "license": "gpl-v3-or-later",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "dependencies": {
+    "@wordpress/scripts": "^13.0.3"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1",
+    "formik": "^2.2.6"
+  }
+}

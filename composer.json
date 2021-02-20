@@ -1,0 +1,18 @@
+{
+    "name": "user/reactive-core",
+    "description": "A custom Plugin",
+    "type": "wordpress-plugin",
+    "license": "gpl-v3-or-later",
+    "authors": [
+        {
+            "name": "Abhishek Rijal",
+            "email": "avee.wptravelengine@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "WP_Reactive\\": "src/"
+        }
+    },
+    "require": {}
+}
