@@ -9,6 +9,7 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		book: `${APP_DIR}/admin/book.js`,
+		blocks: `${APP_DIR}/admin/blocks/blocks.js`,
 	},
 	output: {
 		...defaultConfig.output,

@@ -104,9 +104,9 @@ __webpack_require__.r(__webpack_exports__);
 
 (function () {
   var app = document.getElementById("reactive-core-app");
-  var postId = app.getAttribute("data-post-id");
   document.addEventListener("DOMContentLoaded", function () {
     if (null !== app) {
+      var postId = app.getAttribute("data-post-id");
       Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["render"])(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_bookMetabox__WEBPACK_IMPORTED_MODULE_1__["default"], {
         postId: postId
       }), app);
@@ -133,13 +133,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
@@ -152,15 +150,16 @@ __webpack_require__.r(__webpack_exports__);
 function bookMetabox(_ref) {
   var postId = _ref.postId;
 
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_4___default.a.useState({
-    bookName: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Harry Potter", "reactive-core"),
+  var _useState = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["useState"])({
+    bookName: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Harry Potter", "reactive-core"),
     bookAuthor: "J.K Rowlong",
     bookISBN: "123456",
-    bookColor: "red"
+    bookColor: "red",
+    book_faqs: []
   }),
-      _React$useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default()(_React$useState, 2),
-      defaults = _React$useState2[0],
-      setdefaults = _React$useState2[1];
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default()(_useState, 2),
+      defaults = _useState2[0],
+      setdefaults = _useState2[1];
 
   var handleFormSave = /*#__PURE__*/function () {
     var _ref2 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(formdata) {
@@ -176,7 +175,7 @@ function bookMetabox(_ref) {
               }
 
               FormDataVals.append('post_id', postId);
-              res = axios__WEBPACK_IMPORTED_MODULE_7___default()({
+              res = axios__WEBPACK_IMPORTED_MODULE_6___default()({
                 method: "post",
                 url: "/wp-admin/admin-ajax.php?action=reactive_core_save_mb",
                 data: FormDataVals
@@ -201,7 +200,7 @@ function bookMetabox(_ref) {
     style: {
       backgroundColor: "#f1f1f1"
     }
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_6__["Formik"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_5__["Formik"], {
     enableReinitialize: true,
     initialValues: defaults,
     onSubmit: /*#__PURE__*/function () {
@@ -225,42 +224,77 @@ function bookMetabox(_ref) {
         return _ref3.apply(this, arguments);
       };
     }()
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_6__["Form"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("label", {
-    className: "book-field-label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Book Name", "reactive-core")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_6__["Field"], {
-    className: "book-mbinput",
-    type: "text",
-    name: "bookName",
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Enter text for Book Name", "reactive-core")
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("label", {
-    className: "book-field-label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Book Author", "reactive-core")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_6__["Field"], {
-    className: "book-mbinput",
-    type: "text",
-    name: "bookAuthor",
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Book Author Name", "reactive-core")
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("label", {
-    className: "book-field-label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Book ISBN", "reactive-core")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_6__["Field"], {
-    className: "book-mbinput",
-    type: "number",
-    step: "1",
-    name: "bookISBN",
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Book ISBN", "reactive-core")
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("label", {
-    className: "book-field-label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Book Cover Color", "reactive-core")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_6__["Field"], {
-    name: "bookColor",
-    as: "select"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("option", {
-    value: "red"
-  }, "Red"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("option", {
-    value: "green"
-  }, "Green"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("option", {
-    value: "blue"
-  }, "Blue")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("button", {
-    type: "submit"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])("Save Changes", "reactive-core")))));
+  }, function (_ref4) {
+    var values = _ref4.values,
+        setFieldValue = _ref4.setFieldValue,
+        dirty = _ref4.dirty;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_5__["Form"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("label", {
+      className: "book-field-label"
+    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Book Name", "reactive-core")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_5__["Field"], {
+      className: "book-mbinput",
+      type: "text",
+      name: "bookName",
+      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Enter text for Book Name", "reactive-core")
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("label", {
+      className: "book-field-label"
+    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Book Author", "reactive-core")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_5__["Field"], {
+      className: "book-mbinput",
+      type: "text",
+      name: "bookAuthor",
+      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Book Author Name", "reactive-core")
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("label", {
+      className: "book-field-label"
+    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Book ISBN", "reactive-core")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_5__["Field"], {
+      className: "book-mbinput",
+      type: "number",
+      step: "1",
+      name: "bookISBN",
+      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Book ISBN", "reactive-core")
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("label", {
+      className: "book-field-label"
+    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Book Cover Color", "reactive-core")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_5__["Field"], {
+      name: "bookColor",
+      as: "select"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("option", {
+      value: "red"
+    }, "Red"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("option", {
+      value: "green"
+    }, "Green"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("option", {
+      value: "blue"
+    }, "Blue")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_5__["FieldArray"], {
+      name: "book_faqs"
+    }, function (BookFAQSHlpr) {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", null, values.book_faqs.map(function (faq, index) {
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", {
+          key: index
+        }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("label", {
+          className: "book-field-label"
+        }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("FAQ Title", "reactive-core")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_5__["Field"], {
+          className: "book-mbinput",
+          type: "text",
+          name: "book_faqs.".concat(index, ".title"),
+          placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("FAQ Title", "reactive-core")
+        }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("label", {
+          className: "book-field-label"
+        }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("FAQ Description", "reactive-core")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])(formik__WEBPACK_IMPORTED_MODULE_5__["Field"], {
+          className: "book-mbinput",
+          as: "textarea",
+          name: "book_faqs.".concat(index, ".desc"),
+          placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("FAQ Description", "reactive-core")
+        }));
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("button", {
+        type: "button",
+        onClick: function onClick() {
+          BookFAQSHlpr.push({
+            title: "",
+            desc: ""
+          });
+        }
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Add FAQ Block", "reactive-core")));
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__["createElement"])("button", {
+      type: "submit"
+    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Save Changes", "reactive-core")));
+  }));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (bookMetabox);

@@ -1,16 +1,17 @@
-import React from 'react';
+import { useEffect, useState } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-import { Form, Formik, Field } from "formik";
+import { Form, Formik, Field, FieldArray } from "formik";
 import axios from "axios";
 
 function bookMetabox({ postId }) {
 
-    const [defaults, setdefaults] = React.useState(
+    const [defaults, setdefaults] = useState(
         { bookName: __( "Harry Potter", "reactive-core" ),
         bookAuthor: "J.K Rowlong",
         bookISBN: "123456",
-        bookColor: "red"
-    }
+        bookColor: "red",
+        book_faqs: [],
+        }
     );
 
     const handleFormSave = async (formdata) => {
@@ -42,6 +43,8 @@ function bookMetabox({ postId }) {
                     handleFormSave( values );
                 }}
             >
+           {( { values, setFieldValue, dirty } ) => {
+               return (
                 <Form>
                     <label className="book-field-label">
                         {__("Book Name", "reactive-core")}
@@ -85,10 +88,59 @@ function bookMetabox({ postId }) {
                         <option value="green">Green</option>
                         <option value="blue">Blue</option>
                     </Field>
+
+                    <FieldArray name="book_faqs">
+                        { ( BookFAQSHlpr ) => (
+                    
+                            <div>
+                                {values.book_faqs.map( ( faq, index ) => (
+                                    <div key={index} >
+                                        <label className="book-field-label">
+                                            {__("FAQ Title", "reactive-core")}
+                                        </label>
+                                        <Field
+                                            className="book-mbinput"
+                                            type="text"
+                                            name={`book_faqs.${index}.title`}
+                                            placeholder={__(
+                                                "FAQ Title", "reactive-core"
+                                            )}
+                                        />
+                                        <label className="book-field-label">
+                                            {__("FAQ Description", "reactive-core")}
+                                        </label>
+                                        <Field
+                                            className="book-mbinput"
+                                            as="textarea"
+                                            name={`book_faqs.${index}.desc`}
+                                            placeholder={__(
+                                                "FAQ Description", "reactive-core"
+                                            )}
+                                        />
+                                    </div>
+                                ) )}
+
+                            <button 
+                                type="button"
+                                onClick={ () => {
+                                    BookFAQSHlpr.push({
+                                        title: "",
+                                        desc: ""
+                                    })
+                                } }>
+                                { __( "Add FAQ Block", "reactive-core" ) }
+                            </button>
+                        </div>
+                    ) }
+                    </FieldArray>
+
+
                     <button type="submit">
                         {__("Save Changes", "reactive-core")}
                     </button>
                 </Form>
+               )
+            } }
             </Formik>
         </div>
     )

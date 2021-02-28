@@ -45,6 +45,33 @@ final class ReactiveCore {
 
 		add_action( 'wp_ajax_reactive_core_save_mb', array( $this, 'save_mb_data' ) );
 
+		/**
+		 * Add Blocks Category.
+		*/
+		add_filter( 'block_categories', function ( $categories, $post ) {
+			return array_merge(
+				$categories,
+				array(
+					array(
+						'slug'  => 'blossom-studio',
+						'title' => __( 'Blossom Studio', 'plantura-gutenberg' ),
+					),
+				)
+			);
+		}, 10, 2 );
+
+		add_action( 'enqueue_block_editor_assets', function () {
+			$blocks_deps = include_once plugin_dir_path( REACTIVE_CORE_PLUGIN_FILE ) . '/assets/js/admin/build/blocks.asset.php';
+			
+			wp_enqueue_script(
+				'blossomstd-gb-block-js',
+				plugin_dir_url( REACTIVE_CORE_PLUGIN_FILE ) . '/assets/js/admin/build/blocks.js',
+				$blocks_deps['dependencies'], 
+				$blocks_deps['version'],
+				true
+			);
+		});
+
     }
 
 
